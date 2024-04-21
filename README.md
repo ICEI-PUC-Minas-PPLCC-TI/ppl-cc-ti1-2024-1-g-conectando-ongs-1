@@ -1,18 +1,23 @@
 # Nome do projeto
 
-Escreva um ou dois parágrafo resumindo o objetivo do seu projeto.
+O projeto tem como objetivo auxiliar ONG's com poucos recursos a atingir e impactar mais doadores e possíveis colaboradores.
 
 ## Alunos integrantes da equipe
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
+* Victor Baroni
+* Amanda Medeiros
+* Rodinelly Martins
+* Matheus Rossi
+* Davi Edmundo
+* Ary Gomes
+* Gabriel Mello
 
 ## Professores responsáveis
 
-* Nome completo do professor 1
-* Nome completo do professor 2
+* Hayala Nepomuceno Curto
+* Carolina Stephanie Jerônimo de Almeida
+* Cristiano Neves Rodrigues
+
 
 ## Instruções de utilização
 
