@@ -53,9 +53,11 @@ A criação de uma plataforma de conexão entre ONGs se justifica pela necessida
 ## Persona
 Exemplo de personas que identificamos na nossa pesquisa:
 - Joana Almeida
+
 ![Joana Almeida](../docs/assets/images/Personas/Joana.png)
 ![Proposta de valor](../docs/assets/images/Proposta%20de%20Valor/Porposta%20Joana.png)
 - Maria Lúcia 
+
 ![Lúcia Dalva](../docs/assets/images/Personas/Lúcia.png)
 ![Proposta de valor](../docs/assets/images/Proposta%20de%20Valor/Porposta%20Lucia.png)
 
@@ -97,12 +99,15 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 O wireframe utilizado foi o [Figma](https://www.figma.com/), onde foi desenhado a interface do usuário e desenvolvido o user flow.
 
 - Home page
+  
 ![Home Page](../docs/assets/images/Wireframe/Home%20Page.png)
 
 - Contato
+  
 ![Contato](../docs/assets/images/Wireframe/Contato.png)
 
 - FAQ
+  
 ![FAQ](../docs/assets/images/Wireframe/Faq.png)
 
 ## Ferramentas
