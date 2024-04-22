@@ -35,7 +35,11 @@ A criação de uma plataforma de conexão entre ONGs se justifica pela necessida
 ## Persona
 Exemplo de personas que identificamos na nossa pesquisa:
 
-![Joana Almeida]()
+![Joana Almeida](/../Personas/Joana.png)
+![Proposta de valor]()
+![Lúcia Dalva](/../Personas/Lúcias.png)
+![Proposta de valor]()
+
 ## Histórias de Usuários
 
 Com base na análise das personas forma identificadas as seguintes histórias de usuários:
