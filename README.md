@@ -1,4 +1,4 @@
-# Nome do projeto
+# Conectar ONGs
 
 O projeto tem como objetivo auxiliar ONG's com poucos recursos a atingir e impactar mais doadores e possíveis colaboradores.
 
