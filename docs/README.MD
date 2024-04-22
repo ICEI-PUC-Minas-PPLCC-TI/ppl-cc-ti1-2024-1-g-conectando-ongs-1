@@ -1,12 +1,30 @@
-# Trabalho Interdisciplinar 1 
-`Conectar ONGs`
+# Documentação do Projeto - Trabalho Interdisciplinar 1
+
+`Tema`
+- Conectar ONGs
 
 `CURSO` 
 
  - Ciência da computação
 
-## Participantes
+## Estrutura
+- [Documentação do Projeto - Trabalho Interdisciplinar 1](#documentação-do-projeto---trabalho-interdisciplinar-1)
+  - [Estrutura](#estrutura)
+  - [Participantes](#participantes)
+  - [Problema](#problema)
+  - [Objetivos](#objetivos)
+  - [Justificativa](#justificativa)
+  - [Público-alvo](#público-alvo)
+  - [Persona](#persona)
+  - [Histórias de Usuários](#histórias-de-usuários)
+  - [Requisitos](#requisitos)
+    - [Requisitos Funcionais](#requisitos-funcionais)
+    - [Requisitos não Funcionais](#requisitos-não-funcionais)
+  - [Wireframe](#wireframe)
+  - [Ferramentas](#ferramentas)
+  
 
+## Participantes
  Os membros do grupo são:
  - Amanda Lima Medeiros
  - Ary Gomes da Costa
@@ -34,11 +52,12 @@ A criação de uma plataforma de conexão entre ONGs se justifica pela necessida
 - Empresas filantrópicas
 ## Persona
 Exemplo de personas que identificamos na nossa pesquisa:
-
-![Joana Almeida](/../Personas/Joana.png)
-![Proposta de valor]()
-![Lúcia Dalva](/../Personas/Lúcias.png)
-![Proposta de valor]()
+- Joana Almeida
+![Joana Almeida](../docs/assets/images/Personas/Joana.png)
+![Proposta de valor](../docs/assets/images/Proposta%20de%20Valor/Porposta%20Joana.png)
+- Maria Lúcia 
+![Lúcia Dalva](../docs/assets/images/Personas/Lúcia.png)
+![Proposta de valor](../docs/assets/images/Proposta%20de%20Valor/Porposta%20Lucia.png)
 
 ## Histórias de Usuários
 
@@ -46,12 +65,11 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 
 |EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
 |--------------------|------------------------------------|----------------------------------------|
-|Laura Mendes        | Encontrar ONGs que precisam de voluntários | Contribuir com causas sociais e me engajar em atividades de voluntariado |
-|Laura Mendes        | Fazer doações para ONGs que apoiam causas que me interessam | Contribuir financeiramente para iniciativas alinhadas com meus valores |
-|Pedro Souza         | Identificar ONGs que trabalham com projetos ambientais | Apoiar iniciativas que promovam a sustentabilidade e a preservação do meio ambiente |
-|Pedro Souza         | Oferecer recursos e expertise para ONGs que precisam de apoio técnico | Contribuir com meu conhecimento e experiência para o sucesso de projetos sociais |
-|Gabriel Oliveira    | Encontrar parceiros e colaboradores para um projeto específico | Formar uma equipe qualificada e engajada para desenvolver um projeto social |
-|Gabriel Oliveira    | Promover um evento de arrecadação de fundos para uma causa específica | Mobilizar recursos e apoio para uma iniciativa de impacto social |
+|Maria Luiza       | Encontrar ONGs que precisam de voluntários | Contribuir com causas sociais e me engajar em atividades de voluntariado |
+|Lucas      | Fazer doações para ONGs que apoiam causas que me interessam | Contribuir financeiramente para iniciativas alinhadas com meus valores |
+|Maria Luiza        | Oferecer recursos e expertise para ONGs que precisam de apoio técnico | Contribuir com meu conhecimento e experiência para o sucesso de projetos sociais |
+|Joana    | Encontrar parceiros e colaboradores para um projeto específico | Formar uma equipe qualificada e engajada para desenvolver um projeto social |
+|Joana   | Promover um evento de arrecadação de fundos para uma causa específica | Mobilizar recursos e apoio para uma iniciativa de impacto social |
 
 ## Requisitos
 
@@ -74,7 +92,26 @@ Com base na análise das personas forma identificadas as seguintes histórias de
 |RNF-003| A plataforma deve ser escalável e capaz de lidar com um grande volume de usuários e atividades, sem comprometer o desempenho ou a disponibilidade do sistema | ALTA | 
 |RNF-004| A plataforma deve ser de fácil navegação e utilização, com uma interface intuitiva e amigável para usuários de diferentes níveis de habilidade e experiência | ALTA | 
 |RNF-005| A plataforma deve ser acessível para pessoas com deficiência, seguindo as diretrizes de acessibilidade da Web e garantindo que todos os usuários possam utilizar o sistema de forma eficaz | ALTA |
-## User flow
 
 ## Wireframe
 O wireframe utilizado foi o [Figma](https://www.figma.com/), onde foi desenhado a interface do usuário e desenvolvido o user flow.
+
+- Home page
+![Home Page](../docs/assets/images/Wireframe/Home%20Page.png)
+
+- Contato
+![Contato](../docs/assets/images/Wireframe/Contato.png)
+
+- FAQ
+![FAQ](../docs/assets/images/Wireframe/Faq.png)
+
+## Ferramentas
+![Discord](../docs/assets/images/Imagem%20Ferramentas/Discord.png)
+
+![Figma](../docs/assets/images/Imagem%20Ferramentas/Figma.png)
+
+![GitHub](../docs/assets/images/Imagem%20Ferramentas/GitHub.png)
+
+![Miro](../docs/assets/images/Imagem%20Ferramentas/Miro.png)
+
+![WhatsApp](../docs/assets/images/Imagem%20Ferramentas/WhatsApp.png)
