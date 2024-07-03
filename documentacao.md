@@ -56,7 +56,7 @@ Eu acho importante abordar esse tema, pois várias ONGs com boas intenções nã
 - .JSON
 
 ## processo
-Fiquei sozinho, quanto tempo trabalhava um pouco no trabalho.
+Fiquei sozinho, quando tinha tempo fazia um pouco do trabalho.
 
 ## atribuições
 ary - fullstack ?
@@ -67,7 +67,7 @@ ary - fullstack ?
 - excalidraw
 
 ## funcionalidades de software
-Com um layout simples, e botões chamativos o usuário consegue facilmente navegar pelo site, podendo criar 2 tipos de conta, uma sendo de usuário comum a qual se pode inscrever-se em campanhas de seu interesse, e o outro sendo a organização sendo possível criar as campanhas e excluí la. ambos tem acesso a uma barra de navegação que os leva para ong cadastradas e campanha cadastradas, porém os usuários de tipo ong, tem acesso a criação de campanhas, ver os usuários inscritos em campanhas que os mesmos criaram e uma página para remoção das mesmas.
+Com um layout simples, e botões chamativos, o usuário consegue facilmente navegar pelo site, podendo criar 2 tipos de conta, uma sendo de usuário comum a qual ele pode inscrever-se em campanhas, e o outro sendo a de organização onde se pode criar campanhas e excluí-las. Ambos têm acesso a uma barra de navegação que os leva para as páginas ong cadastradas e campanhas cadastradas, porém os usuários de tipo ong, tem acesso a criação de campanhas, ver os usuários inscritos em campanhas que os mesmos criaram e uma página para remoção das mesmas.
 
 
 
