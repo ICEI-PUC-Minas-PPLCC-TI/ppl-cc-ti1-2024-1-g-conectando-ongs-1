@@ -20,5 +20,12 @@ O projeto tem como objetivo auxiliar ONG's com poucos recursos a atingir e impac
 
 
 ## Instruções de utilização
+- ter o nodeJS instalado
+- baixar e iniciar json-server
+```
+npm install json-server
+npx json-server --watch db.json
+```
+- Abrir a pagina index.html em algum servido (eu ultilizei a extençao live server no VSCode)
 
-Assim que a primeira versão do sistema estiver disponível, deverá complementar com as instruções de utilização. Descreva como instalar eventuais dependências e como executar a aplicação.
+  
