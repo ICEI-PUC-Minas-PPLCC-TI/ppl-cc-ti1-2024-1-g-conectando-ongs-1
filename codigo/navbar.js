@@ -1,6 +1,6 @@
 $(document).ready(function() {
   function loadNavBar() {
-    const userType = sessionStorage.getItem('userType'); // Assuming userType is stored in sessionStorage
+    const userType = sessionStorage.getItem('userType'); 
     const navbarItems = $('#navbarItems');
     navbarItems.empty();
 
@@ -18,7 +18,7 @@ $(document).ready(function() {
         <li class="nav-item"><a class="nav-link text-light" href="ap-ongs.html">ONGs Cadastradas</a></li>
         <li class="nav-item"><a class="nav-link text-light" href="ap-campaign.html">Campanhas Cadastradas</a></li>
         <div class="dropdown ml-2">
-          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             ${sessionStorage.getItem('userName')}
           </button>
           <div class="dropdown-menu dropdown-menu-right">
@@ -34,7 +34,7 @@ $(document).ready(function() {
         <li class="nav-item"><a class="nav-link text-light" href="subscribed-users.html">Mostrar Usuarios Cadastrados</a></li>
         <li class="nav-item"><a class="nav-link text-success" href="make-campaign.html">Criar Nova Campanha</a></li>
         <div class="dropdown ml-2">
-          <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             ${sessionStorage.getItem('userName')}
           </button>
           <div class="dropdown-menu dropdown-menu-right">
