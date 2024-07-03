@@ -26,6 +26,6 @@ O projeto tem como objetivo auxiliar ONG's com poucos recursos a atingir e impac
 npm install json-server
 npx json-server --watch db.json
 ```
-- Abrir a pagina index.html em algum servido (eu ultilizei a extençao live server no VSCode)
+- Abrir a pagina `index.html` em algum servido (eu ultilizei a extençao live server no VSCode)
 
   
