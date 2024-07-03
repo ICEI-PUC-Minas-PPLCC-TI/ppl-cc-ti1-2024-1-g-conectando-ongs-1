@@ -96,8 +96,9 @@
         contentType: 'application/json',
         data: JSON.stringify(userData),
         success: function(response) {
+          window.location.href = 'login.html'; 
           alert('Conta Criada Com Sucesso!');
-          window.location.href = 'login.html';  
+
         },
         error: function(error) {
           alert('Erro na Criação');
@@ -122,8 +123,9 @@
         contentType: 'application/json',
         data: JSON.stringify(orgData),
         success: function(response) {
-          alert('Conta Criada Com Sucesso!');
           window.location.href = 'login.html'; 
+          alert('Conta Criada Com Sucesso!');
+
         },
         error: function(error) {
           alert('Erro na Criação.');
