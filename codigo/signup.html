@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ONG</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .form-section {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h2 class="text-center">Criar Conta Como:</h2>
+    <div class="text-center my-4">
+      <button id="userBtn" class="btn btn-primary mx-2">Usuário</button>
+      <button id="orgBtn" class="btn btn-secondary mx-2">Organização</button>
+    </div>
+
+    <!-- User Form -->
+    <div id="userForm" class="form-section">
+      <h3>Criando conta como Usuário</h3>
+      <form id="userSignUpForm">
+        <div class="form-group">
+          <label for="userName">Nome Completo</label>
+          <input type="text" class="form-control" id="userName" name="nome" required>
+        </div>
+        <div class="form-group">
+          <label for="userEmail">Email</label>
+          <input type="email" class="form-control" id="userEmail" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="userPassword">Senha</label>
+          <input type="password" class="form-control" id="userPassword" name="pswd" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar-se</button>
+      </form>
+    </div>
+
+    <!-- Organization Form -->
+    <div id="orgForm" class="form-section">
+      <h3>Criando conta como Organização</h3>
+      <form id="orgSignUpForm">
+        <div class="form-group">
+          <label for="orgName">Nome da Organização</label>
+          <input type="text" class="form-control" id="orgName" name="nome" required>
+        </div>
+        <div class="form-group">
+          <label for="orgCNPJ">CNPJ</label>
+          <input type="text" class="form-control" id="orgCNPJ" name="cnpj" required>
+        </div>
+        <div class="form-group">
+          <label for="orgEmail">Email</label>
+          <input type="email" class="form-control" id="orgEmail" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="orgPassword">Senha</label>
+          <input type="password" class="form-control" id="orgPassword" name="pswd" required>
+        </div>
+        <div class="form-group">
+          <label for="orgAddress">Endereço</label>
+          <input type="text" class="form-control" id="orgAddress" name="endereco" required>
+        </div>
+        <div class="form-group">
+          <label for="orgDescription">Descrição (quais atividades sua ONG realiza)</label>
+          <textarea class="form-control" id="orgDescription" name="descricao" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-secondary">Cadastrar-se</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script>
+    document.getElementById('userBtn').addEventListener('click', function() {
+      document.getElementById('userForm').style.display = 'block';
+      document.getElementById('orgForm').style.display = 'none';
+    });
+
+    document.getElementById('orgBtn').addEventListener('click', function() {
+      document.getElementById('userForm').style.display = 'none';
+      document.getElementById('orgForm').style.display = 'block';
+    });
+
+    document.getElementById('userSignUpForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const userData = {
+        nome: document.getElementById('userName').value,
+        email: document.getElementById('userEmail').value,
+        pswd: document.getElementById('userPassword').value,
+      };
+      $.ajax({
+        url: 'http://localhost:3000/users',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(userData),
+        success: function(response) {
+          alert('Conta Criada Com Sucesso!');
+          window.location.href = 'login.html';  
+        },
+        error: function(error) {
+          alert('Erro na Criação');
+        }
+      });
+    });
+
+    document.getElementById('orgSignUpForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const orgData = {
+        nome: document.getElementById('orgName').value,
+        cnpj: document.getElementById('orgCNPJ').value,
+        email: document.getElementById('orgEmail').value,
+        pswd: document.getElementById('orgPassword').value,
+        endereco: document.getElementById('orgAddress').value,
+        descricao: document.getElementById('orgDescription').value,
+        campanhas: [] 
+      };
+      $.ajax({
+        url: 'http://localhost:3000/ongs',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(orgData),
+        success: function(response) {
+          alert('Conta Criada Com Sucesso!');
+          window.location.href = 'login.html'; 
+        },
+        error: function(error) {
+          alert('Erro na Criação.');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

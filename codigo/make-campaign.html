@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ONG</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <h2 class="text-center">Criar Nova Campanha</h2>
+    <form id="createCampaignForm">
+      <div class="form-group">
+        <label for="campaignName">Nome da Campanha</label>
+        <input type="text" class="form-control" id="campaignName" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="campaignBanner">Imagem que será usada de Banner</label>
+        <input type="file" class="form-control" id="campaignBanner" name="banner" accept="image/*" required>
+      </div>
+      <div class="form-group">
+        <label for="campaignDescription">Descrição da Campanha</label>
+        <textarea class="form-control" id="campaignDescription" name="description" rows="3" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="campaignTag">Tema da Campanha</label>
+        <input type="text" class="form-control" id="campaignTag" name="tag" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Criar</button>
+      <a href="ap-ongs.html" class="btn btn-secondary ml-2">Voltar para ONGs Cadastradas</a>
+    </form>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $('#createCampaignForm').submit(function(event) {
+        event.preventDefault(); 
+    
+        const fileInput = $('#campaignBanner')[0].files[0];
+        if (fileInput) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const base64String = e.target.result.split(',')[1]; 
+    
+            const campaignData = {
+              id: Date.now(), 
+              name: $('#campaignName').val(),
+              banner: base64String,
+              description: $('#campaignDescription').val(),
+              tag: $('#campaignTag').val(),
+              date: new Date().toISOString().slice(0, 10),
+              userSubscriptions: [] 
+            };
+    
+            $.ajax({
+              url: 'http://localhost:3000/ongs/' + sessionStorage.getItem('userId'), 
+              type: 'GET',
+              success: function(response) {
+
+                response.campanhas = response.campanhas || [];
+                response.campanhas.push(campaignData);
+    
+
+                $.ajax({
+                  url: 'http://localhost:3000/ongs/' + sessionStorage.getItem('userId'),
+                  type: 'PATCH',
+                  contentType: 'application/json',
+                  data: JSON.stringify({
+                    campanhas: response.campanhas
+                  }),
+                  
+                  success: function(updatedResponse) {
+                    alert('Campanha Criada');
+                    window.location.href = 'ap-ongs.html'; 
+                  },
+                  error: function(error) {
+                    alert('Error ao criar uma nova campanha.');
+                  }
+                });
+              },
+              error: function(error) {
+                alert('Error fetching organization data.');
+              }
+            });
+          };
+          reader.readAsDataURL(fileInput); 
+        } else {
+          alert('Porfavor selecione uma Imagem Valida.');
+        }
+      });
+    });
+    </script>
+    
+    
+</body>
+</html>

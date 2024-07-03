@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ONG</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .container {
+      padding-top: 80px;
+    }
+    .card {
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    }
+    .card-header {
+      background-color: black;
+      color: white;
+    }
+    .card-header h2 {
+      font-size: 24px;
+      margin-bottom: 0;
+    }
+    .card-body {
+      padding: 30px;
+    }
+    .card-title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .card-text {
+      margin-bottom: 15px;
+    }
+    .campaign-card {
+      border-left: 5px solid black;
+      margin-bottom: 15px;
+      padding-left: 15px;
+    }
+    .campaign-card .card-title {
+      font-size: 18px;
+      margin-bottom: 0;
+    }
+    .campaign-card .card-text {
+      margin-bottom: 0;
+    }
+    .back-button {
+      margin-top: 20px;
+    }
+    .delete-button {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- nav -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <a class="navbar-brand text-white" href="index.html">conectando-ongs-1</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto" id="navbarItems">
+        <!--  -->
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="text-center">Minhas Campanhas</h2>
+      </div>
+      <div class="card-body" id="campaignsList">
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  <script src="navbar.js"></script>
+  <script>
+    $(document).ready(function() {
+      const ongId = sessionStorage.getItem('userId');
+
+      if (ongId) {
+        $.getJSON(`http://localhost:3000/ongs/${ongId}`, function(ong) {
+          const campaignsList = $('#campaignsList');
+          ong.campanhas.forEach(function(campaign) {
+            let campaignCard = `
+              <div class="card campaign-card">
+                <div class="card-body">
+                  <h5 class="card-title">${campaign.name}</h5>
+                  <p class="card-text">${campaign.description}</p>
+                  <p class="card-text"><strong>Tag:</strong> ${campaign.tag}</p>
+                  <p class="card-text"><strong>Data de Criação: </strong> ${campaign.date}</p>
+                  <button class="btn btn-danger delete-button" data-ong-id="${ongId}" data-campaign-id="${campaign.id}">Deletar Campanha</button>
+                </div>
+              </div>
+            `;
+            campaignsList.append(campaignCard);
+          });
+
+          campaignsList.on('click', '.delete-button', function() {
+            const campaignId = $(this).data('campaign-id');
+            removeCampaign(ongId, campaignId, ong); 
+          });
+        });
+      } else {
+        alert('Seção expirada.');
+        window.location.href = 'login.html';
+      }
+    });
+
+    function removeCampaign(ongId, campaignId, ong) {
+      const index = ong.campanhas.findIndex(campaign => campaign.id === campaignId);
+
+      if (index !== -1) {
+        ong.campanhas.splice(index, 1);
+        $.ajax({
+          url: `http://localhost:3000/ongs/${ongId}`,
+          type: 'PUT',
+          contentType: 'application/json',
+          data: JSON.stringify(ong),
+          success: function(response) {
+            alert('Campanha Removida com Sucesso!');
+            location.reload();
+          },
+          error: function(error) {
+            alert('Erro durante a remoção da campanha.');
+          }
+        });
+      } else {
+        alert('Campanha não encontrada.');
+      }
+    }
+  </script>
+</body>
+</html>

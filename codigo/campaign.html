@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ONG</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <style>
+    .campaign-img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+    .campaign-details {
+      padding: 20px;
+    }
+    .campaign-description {
+      margin-top: 20px;
+    }
+    .campaign-tag {
+      margin-top: 10px;
+    }
+    .back-button {
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+ <!-- nav -->
+ <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+   <a class="navbar-brand text-white" href="index.html">conectando-ongs-1</a>
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+     <span class="navbar-toggler-icon"></span>
+   </button>
+   <div class="collapse navbar-collapse" id="navbarNav">
+     <ul class="navbar-nav ml-auto" id="navbarItems">
+
+     </ul>
+   </div>
+ </nav>
+
+ <div class="container mt-5">
+   <div class="card">
+     <img id="campaignBanner" src="" class="card-img-top campaign-img" alt="Campaign Banner">
+     <div class="card-body campaign-details">
+       <h3 id="campaignName" class="card-title"></h3>
+       <p id="campaignTag" class="badge badge-info p-2 campaign-tag"></p>
+       <p id="campaignDescription" class="card-text campaign-description"></p>
+       <button id="subscribeButton" class="btn btn-success float-right">Inscrever-se</button>
+       <button onclick="window.history.back()" class="btn btn-secondary back-button">Voltar para Campanhas</button>
+     </div>
+   </div>
+ </div>
+
+ <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+ <script src="navbar.js"></script>
+ <script>
+   $(document).ready(function() {
+     const urlParams = new URLSearchParams(window.location.search);
+     const campaignId = urlParams.get('id');
+     const ongId = urlParams.get('ongId');
+
+     if (campaignId && ongId) {
+       $.getJSON(`http://localhost:3000/ongs/${ongId}`, function(data) {
+         const campaign = data.campanhas.find(c => c.id == campaignId);
+         if (campaign) {
+           $('#campaignBanner').attr('src', 'data:image/png;base64,' + campaign.banner);
+           $('#campaignName').text(campaign.name);
+           $('#campaignTag').text(campaign.tag);
+           $('#campaignDescription').text(campaign.description);
+
+           const userType = sessionStorage.getItem('userType');
+           if (userType === 'user') {
+             if (campaign.userSubscriptions.includes(sessionStorage.getItem('userId'))) {
+               $('#subscribeButton').removeClass('btn-primary').addClass('btn-danger').text('Cancelar Inscrição');
+             }
+
+             $('#subscribeButton').show().click(function() {
+               if (!campaign.userSubscriptions.includes(sessionStorage.getItem('userId'))) {
+                 campaign.userSubscriptions.push(sessionStorage.getItem('userId'));
+                 updateCampaignData(data);
+               } else {
+                
+                 const index = campaign.userSubscriptions.indexOf(sessionStorage.getItem('userId'));
+                 if (index > -1) {
+                   campaign.userSubscriptions.splice(index, 1);
+                   updateCampaignData(data);
+                 }
+               }
+             });
+           } else {
+             $('#subscribeButton').hide(); 
+           }
+         } else {
+           alert('404');
+           window.location.href = 'ap-ongs.html'; 
+         }
+       });
+     } else {
+       alert('ID Nao especificado');
+       window.location.href = 'ap-ongs.html'; 
+     }
+   });
+
+   function updateCampaignData(data) {
+     $.ajax({
+       url: `http://localhost:3000/ongs/${data.id}`,
+       type: 'PUT',
+       contentType: 'application/json',
+       data: JSON.stringify(data),
+       success: function(response) {
+         alert('Dados Altualizado Com Sucesso!');
+         const button = $('#subscribeButton');
+         if (data.userSubscriptions.includes(sessionStorage.getItem('userId'))) {
+           button.removeClass('btn-primary').addClass('btn-danger').text('Unsubscribe');
+         } else {
+           button.removeClass('btn-danger').addClass('btn-primary').text('Subscribe to Campaign');
+         }
+       },
+       error: function(error) {
+         alert('Error.');
+       }
+     });
+   }
+ </script>
+</body>
+</html>

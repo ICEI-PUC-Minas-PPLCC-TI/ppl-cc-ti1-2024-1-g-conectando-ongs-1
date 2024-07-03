@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subscribed Users</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <a class="navbar-brand text-white" href="index.html">conectando-ongs-1</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto" id="navbarItems">
+
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <h2 class="mb-4">Usuarios Inscritos</h2>
+    <div class="row">
+      <div class="col">
+        <button id="downloadCSVButton" class="btn btn-success">Baixar CSV</button>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col">
+        <table id="subscribedUsersTable" class="table table-striped">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Nome Campanha</th>
+              <th>Tag</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+  <script src="navbar.js"></script>
+  <script>
+    $(document).ready(function() {
+      const ongId = sessionStorage.getItem('userId');
+  
+      if (ongId) {
+        $.getJSON(`http://localhost:3000/ongs/${ongId}`, function(data) {
+          console.log('Received data:', data); 
+  
+          const campaigns = data.campanhas;
+          const users = data.users;
+  
+          function downloadCSV() {
+            let csvContent = "data:text/csv;charset=utf-8," + "Nome,Email,NomeCampanha,Tag\n";
+
+            let usersProcessed = 0;
+            campaigns.forEach(campaign => {
+              campaign.userSubscriptions.forEach(userId => {
+                $.getJSON(`http://localhost:3000/users/${userId}`, function(user) {
+                  csvContent += `${user.nome},${user.email},${campaign.name},${campaign.tag}\n`;
+                  usersProcessed++;
+                  if (usersProcessed === campaign.userSubscriptions.length) {
+                    const encodedUri = encodeURI(csvContent);
+                    const link = document.createElement("a");
+                    link.setAttribute("href", encodedUri);
+                    link.setAttribute("download", "usuarios_inscritos.csv");
+                    document.body.appendChild(link); 
+                    link.click();
+                  }
+                });
+              });
+            });
+          }
+  
+          $('#downloadCSVButton').click(downloadCSV);
+          const tableBody = $('#subscribedUsersTable tbody');
+          campaigns.forEach(campaign => {
+            campaign.userSubscriptions.forEach(userId => {
+              $.getJSON(`http://localhost:3000/users/${userId}`, function(user) {
+                tableBody.append(`
+                  <tr>
+                    <td>${user.nome}</td>
+                    <td>${user.email}</td>
+                    <td>${campaign.name}</td>
+                    <td>${campaign.tag}</td>
+                  </tr>
+                `);
+              });
+            });
+          });
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+          console.error('Error fetching data:', textStatus, errorThrown); 
+        });
+      } else {
+        alert('Sua seção foi expirada.');
+        window.location.href = 'login.html'; 
+      }
+    });
+  </script>
+  
+</body>
+</html>

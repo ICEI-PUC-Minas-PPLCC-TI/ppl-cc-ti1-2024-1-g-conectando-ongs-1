@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ONG</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <h2 class="text-center">Sair</h2>
+    <div class="alert alert-info" role="alert">
+      Tem certeza que deseja sair?
+    </div>
+    <div class="text-center">
+      <button id="confirmLogoutBtn" class="btn btn btn-danger mx-2">Confirmar</button>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $('#confirmLogoutBtn').click(function() {
+        sessionStorage.clear();
+        alert('Logout successful!');
+        window.location.href = 'login.html'; 
+      });
+    });
+  </script>
+</body>
+</html>
